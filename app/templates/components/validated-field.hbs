@@ -1,0 +1,73 @@
+{{#if (eq type "text")}}
+    <label for={{concat type "-" property}} class={{if required 'required' ''}} style="position: relative; margin-bottom: 20px; width: 100%;">
+        {{label}}
+        <input class="{{classes}} {{if (get changeset.error property) 'bg-danger' ''}}" type={{type}} id={{concat type "-" property}} value={{get changeset property}} oninput={{action (mut (get changeset property)) value="target.value"}} onblur={{action validateProperty}} style="margin-top: 5px;" placeholder={{placeholder}}>
+        {{#each-in (get changeset '_errors') as |error value|}}
+            {{#if (eq error property)}}
+                {{#each (get value 'validation') as |message index|}}
+                    {{#if (eq index 0)}}
+                        <small style="position: absolute;"><label class="control-label text-danger">{{message}}</label></small>
+                    {{/if}}
+                {{/each}}
+            {{/if}}
+        {{/each-in}}
+    </label>
+{{/if}}
+
+{{#if (eq type "hidden")}}
+    <input class="{{classes}} {{if (get changeset.error property) 'bg-danger' ''}}" type={{type}} id={{concat type "-" property}} value={{get changeset property}} oninput={{action (mut (get changeset property)) value="target.value"}} onblur={{action validateProperty}} style="margin-top: 5px;">
+{{/if}}
+
+{{#if (eq type "number")}}
+    <label for={{concat type "-" property}} class={{if required 'required' ''}} style="position: relative; margin-bottom: 20px; width: 100%;">
+        {{label}}
+        <input class="{{classes}} {{if (get changeset.error property) 'bg-danger' ''}}" type={{type}} id={{concat type "-" property}} value={{get changeset property}} oninput={{action (mut (get changeset property)) value="target.value"}} onblur={{action validateProperty}} style="margin-top: 5px;">
+        {{#if (get changeset.error property)}}
+            <div style="position: absolute;">
+            {{#each (get (get changeset.error property) "validation") as |message index|}}
+                {{#if (eq index 0)}}
+                <small><label class="control-label text-danger">{{message}}</label></small>
+                {{/if}}
+            {{/each}}
+            </div>
+        {{/if}}
+    </label>
+{{/if}}
+
+{{#if (eq type "checkbox")}}
+    <label for={{concat type "-" property}} class={{if required 'required' ''}} style="width: 100%;">
+        {{#if (get changeset property)}}
+            <input checked class="{{classes}} {{if (get changeset.error property) 'bg-danger' ''}}" type={{type}} id={{concat type "-" property}} value={{get changeset property}} oninput={{action (mut (get changeset property)) value="target.value"}} onblur={{action validateProperty}}>
+        {{else}}
+            <input class="{{classes}} {{if (get changeset.error property) 'bg-danger' ''}}" type={{type}} id={{concat type "-" property}} value={{get changeset property}} oninput={{action (mut (get changeset property)) value="target.value"}} onblur={{action validateProperty}}>
+        {{/if}}
+        
+        {{label}}
+        {{#if (get changeset.error property)}}
+            <span>
+            {{#each (get (get changeset.error property) "validation") as |message index|}}
+                {{#if (eq index 0)}}
+                <small><label class="control-label text-danger">{{message}}</label></small>
+                {{/if}}
+            {{/each}}
+            </span>
+        {{/if}}
+    </label>
+{{/if}}
+
+
+{{#if (eq type "date")}}
+    <label for={{concat type "-" property}} class={{if required 'required' ''}} style="position: relative; margin-bottom: 20px; width: 100%;">
+        {{label}}{{#if labelMessage}}<small class='text-muted'> {{labelMessage}}</small>{{/if}}
+        <input class="{{classes}} {{if (get changeset.error property) 'bg-danger' ''}}" placeholder="2001-10-31" type={{type}} id={{concat type "-" property}} value={{get changeset property}} oninput={{action (mut (get changeset property)) value="target.value"}} onblur={{action validateProperty}} style="margin-top: 5px;">
+        {{#if (get changeset.error property)}}
+            <div style="position: absolute;">
+            {{#each (get (get changeset.error property) "validation") as |message index|}}
+                {{#if (eq index 0)}}
+                <small><label class="control-label text-danger">{{message}}</label></small>
+                {{/if}}
+            {{/each}}
+            </div>
+        {{/if}}
+    </label>
+{{/if}}

@@ -1,7 +1,8 @@
 # changeset-scope
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+Using ember-changeset & ember-changeset-validations - validate each individual address
+and addresses. The **Save** and **Back** buttons should only be enabled if all of the
+addresses are valid.
 
 ## Prerequisites
 

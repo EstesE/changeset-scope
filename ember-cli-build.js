@@ -7,6 +7,14 @@ module.exports = function(defaults) {
     // Add options here
   });
 
+  app.import('bower_components/moment/min/moment.min.js');
+  app.import('bower_components/lodash/lodash.js');
+
+  app.import('bower_components/Ionicons/fonts/ionicons.eot', { destDir: 'fonts' });
+  app.import('bower_components/Ionicons/fonts/ionicons.ttf', { destDir: 'fonts' });
+  app.import('bower_components/Ionicons/fonts/ionicons.woff', { destDir: 'fonts' });
+  app.import('bower_components/Ionicons/fonts/ionicons.woff2', { destDir: 'fonts' });
+
   // Use `app.import` to add additional libraries to the generated
   // output files.
   //

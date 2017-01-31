@@ -1,0 +1,50 @@
+<div class='container'>
+    <div class='col-xs-12 text-center'><h2>Addresses</h2></div>
+    {{#each model as |address index|}}
+        {{#if (eq index 0)}}
+        <div class='block p-t-0'>
+            <div class='container'>
+                <h3 class='block-title text-uppercase'>Current Address</h3>
+                <h4 class='block-title'>Please list all previous addresses you have lived at over the past 10 years.</h4>
+                <div class='row' style='border: 1px solid black;'>
+                {{my-address 
+                    model=address
+                    index=index
+                    removeAddress=(action 'removeAddress') 
+                }}
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <div class='block block-bordered-lg p-t-0'>
+            <div class='container'>
+                <h3 class='block-title text-uppercase'>Previous Address <span class='ion-ios-trash-outline removeItem' {{action 'removeAddress' address}}></span></h3>
+                <div class='row' style='border: 1px solid red;'>
+                    {{my-address
+                        model=address
+                        index=index
+                        removeAddress=(action 'removeAddress') 
+                    }}
+                </div>
+            </div>
+        </div>
+        {{/if}}
+    {{/each}}
+
+    <div class='block p-t-0'>
+        <div class='container'>
+            <div class="pull-left">
+                <button type="button" title="Add Address" class="btn btn-link p-l-0"  {{action 'addAddress'}}><i class="fa fa-plus"></i> Add Previous Address</button>
+            </div>
+        </div>
+    </div>
+
+    <div class='block p-t-0'>
+        <div class='container'>
+            <div class="pull-right">
+                <button type="button" class="btn btn-primary-outline" >{{backText}}</button>
+                <button type="submit" class="btn btn-primary-outline pull-right" style="margin-left: 20px;">{{saveText}}</button>
+            </div>
+        </div>
+    </div>
+</div>

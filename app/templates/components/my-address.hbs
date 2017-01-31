@@ -1,0 +1,134 @@
+<div class='col-md-4'>
+    {{validated-field 
+        type="text" 
+        changeset=changeset
+        property="street" 
+        label="Street" 
+        required=true 
+        classes="form-control"
+        validateProperty=(action 'validateProperty' changeset "street")
+    }}
+</div>
+
+<div class='col-md-4'>
+    {{validated-field 
+        type="text" 
+        changeset=changeset
+        property="city" 
+        label="City" 
+        required=true 
+        classes="form-control"
+        validateProperty=(action 'validateProperty' changeset "city")
+    }}
+</div>
+
+<div class='col-md-2'>
+    {{validated-field 
+        type="text" 
+        changeset=changeset
+        property="state" 
+        label="State" 
+        required=true 
+        classes="form-control"
+        validateProperty=(action 'validateProperty' changeset "state")
+    }}
+</div>
+
+<div class='col-md-2'>
+    {{validated-field 
+        type="text" 
+        changeset=changeset
+        property="zip" 
+        label="Zip" 
+        required=true 
+        classes="form-control"
+        validateProperty=(action 'validateProperty' changeset "zip")
+    }}
+</div>
+
+<div class='col-md-4'>
+    {{validated-field 
+        type="date" 
+        changeset=changeset
+        property="moveInDate" 
+        label="From Date" 
+        required=true 
+        classes="form-control"
+        validateProperty=(action 'validateProperty' changeset "moveInDate")
+    }}
+</div>
+
+<div class='col-md-4'>
+    {{!--<label>To Date</label>
+    {{input type='date' class='form-control' value=model.toDate}}--}}
+    {{validated-field 
+        type="date" 
+        changeset=changeset
+        property="moveOutDate" 
+        label="To Date" 
+        required=true 
+        classes="form-control"
+        validateProperty=(action 'validateProperty' changeset "moveOutDate")
+    }}
+</div>
+
+<div class="col-md-4 radio-container" style="min-height: 83px;">
+    <label>Do you currently Rent or Own
+    <div>
+        <label class='m-r'>
+            {{radio-button
+                value=true
+                groupValue=model.rent
+                changed="rentOrOwn"
+            }}
+            Rent
+        </label>
+        <label>
+            {{radio-button
+                value=false
+                groupValue=model.rent
+                changed="rentOrOwn"
+            }}
+            Own
+        </label>
+    </div>
+    </label>
+</div>
+
+{{#if model.rent}}
+<div class="col-md-4">
+    {{validated-field 
+        type="text" 
+        changeset=changeset
+        property="landlord.name" 
+        label="Landlord/Apartment Name" 
+        required=true 
+        classes="form-control"
+        validateProperty=(action 'validateProperty' changeset "landlord.name")
+    }}
+</div>
+
+<div class="col-md-4">
+    {{validated-field 
+        type="text" 
+        changeset=changeset
+        property="landlord.phone" 
+        label="Landlord Phone" 
+        required=true 
+        classes="form-control"
+        validateProperty=(action 'validateProperty' changeset "landlord.phone")
+    }}
+</div>
+
+<div class="col-md-4">
+    {{validated-field 
+        type="text" 
+        changeset=changeset
+        property="landlord.rent" 
+        label="Landlord Rent" 
+        required=true 
+        classes="form-control"
+        validateProperty=(action 'validateProperty' changeset "landlord.rent")
+    }}
+</div>
+{{/if}}
