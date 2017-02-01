@@ -10,7 +10,10 @@
                 {{my-address 
                     model=address
                     index=index
-                    removeAddress=(action 'removeAddress') 
+                    removeAddress=(action 'removeAddress')
+                    xAddresses=xAddresses
+                    index=index
+                    validatedUp=(action 'validatedUp')
                 }}
                 </div>
             </div>
@@ -18,12 +21,15 @@
         {{else}}
         <div class='block block-bordered-lg p-t-0'>
             <div class='container'>
-                <h3 class='block-title text-uppercase'>Previous Address <span class='ion-ios-trash-outline removeItem' {{action 'removeAddress' address}}></span></h3>
+                <h3 class='block-title text-uppercase'>Previous Address <span class='ion-ios-trash-outline removeItem' {{action 'removeAddress' address index}}></span></h3>
                 <div class='row' style='border: 1px solid red;'>
                     {{my-address
                         model=address
                         index=index
                         removeAddress=(action 'removeAddress')
+                        xAddresses=xAddresses
+                        index=index
+                        validatedUp=(action 'validatedUp')
                     }}
                 </div>
             </div>
@@ -42,7 +48,7 @@
     <div class='block p-t-0'>
         <div class='container'>
             <div class="pull-right">
-                {{#if (eq this.addressesValid true)}}
+                {{#if (eq this.allValid true)}}
                 <button type="button" class="btn btn-primary-outline" >{{backText}}</button>
                 <button type="submit" class="btn btn-primary-outline pull-right" style="margin-left: 20px;">{{saveText}}</button>
                 {{else}}

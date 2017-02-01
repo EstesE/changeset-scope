@@ -1,12 +1,13 @@
 import Ember from 'ember';
 
-const { get, isBlank, isPresent, set } = Ember;
+const { get, isPresent, set } = Ember;
 
 export default Ember.Component.extend({
-    EventBus: Ember.inject.service('event-bus'),
-
     numberOfAddresses: null,
     addressesValid: null,
+    xAddresses: [],
+    allValid: false,
+    addressIndex: null,
 
     init() {
         let component = this;
@@ -14,34 +15,55 @@ export default Ember.Component.extend({
 
         set(component, 'numberOfAddresses', component.model.length);
 
-        component.get('EventBus').subscribe('valid-addresses', function (changeset) {
-            changeset.validate();
-            if (isBlank(get(changeset._content, 'landlord'))) {
-                delete changeset._errors['landlord.phone'];
-                delete changeset._errors['landlord.rent'];
-                delete changeset._errors['landlord.name'];
-            }
-
-            if (changeset.get('errors').length > 0) {
-                console.log('set to false');
-                set(component, 'addressesValid', false);
-            } else {
-                console.log('set to true');
-                set(component, 'addressesValid', true);
-            }
-
-        });
+        for (let i = 0; i < component.model.length; i++) {
+            let name = 'address' + i;
+            let add = {
+                name: name,
+                valid: false,
+                changeset: {}
+            };
+            this.xAddresses.push(add);
+            set(this, 'addressIndex', i);
+        }
     },
 
     actions: {
+        validatedUp: function (changeset, address) {
+            if (isPresent(changeset) && isPresent(address)) {
+                let mAdd = this.xAddresses.findBy('name', address.name);
+                if (isPresent(mAdd)) {
+                    set(mAdd, 'changeset', changeset);
+                    set(address, 'valid', changeset.get('isValid'));
+                }
+            }
 
-        removeAddress: function (address) {
+            for (let i = 0; i < this.xAddresses.length; i++) {
+                if (this.xAddresses[i].valid === true) {
+                    set(this, 'allValid', true);
+                } else {
+                    set(this, 'allValid', false);
+                    break;
+                }
+            }
+        },
+
+        removeAddress: function (address, index) {
             let component = this;
             let addressNum = get(component, 'numberOfAddresses');
             if (isPresent(address)) {
                 let addresses = this.get('model');
                 addresses.removeObject(address);
                 set(component, 'numberOfAddresses', addressNum - 1);
+                this.xAddresses.removeAt(index);
+
+                for (let i = 0; i < this.xAddresses.length; i++) {
+                    if (this.xAddresses[i].valid === true) {
+                        set(this, 'allValid', true);
+                    } else {
+                        set(this, 'allValid', false);
+                        break;
+                    }
+                }
             }
         },
 
@@ -59,7 +81,17 @@ export default Ember.Component.extend({
             });
             addresses.pushObject(address);
             set(component, 'numberOfAddresses', addressNum + 1);
+
+            let index = get(this, 'addressIndex') + 1;
+            let name = 'address' + index;
+            let add = {
+                name: name,
+                valid: false,
+                changeset: {}
+            };
+            this.xAddresses.push(add);
+            set(this, 'addressIndex', get(this, 'addressIndex') + 1);
         }
-        
+
     }
 });
