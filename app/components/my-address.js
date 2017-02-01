@@ -45,9 +45,26 @@ export default Ember.Component.extend({
                 set(changeset, 'landlord.name', '');
                 set(changeset, 'landlord.phone', '');
                 set(changeset, 'landlord.rent', '');
+                this.sendAction('validatedUp', this.changeset, this.xAddresses[this.index]);
             } else {
-                delete model.landlord;
-                set(this, 'changeset', new Changeset(this.model, lookupValidator(AddressValidations), AddressValidations));
+                debugger;
+                // Need to remove 'landlord' from the changeset and remove any errors associated with 'landlord' in order for the changeset to be 'isValid' true.
+
+                // set(changeset, 'landlord', null);
+                // this.sendAction('validatedUp', this.changeset, this.xAddresses[this.index]);
+
+                // delete model.landlord;
+                // debugger;
+                
+                // delete changeset._errors['landlord.phone'];
+				// delete changeset._errors['landlord.rent'];
+				// delete changeset._errors['landlord.name'];
+
+                // delete changeset._content['landlord.phone'];
+                // delete changeset._content['landlord.rent'];
+				// delete changeset._content['landlord.name'];
+                // // set(this, 'changeset', new Changeset(this.model, lookupValidator(AddressValidations), AddressValidations));
+                // this.sendAction('validatedUp', this.changeset, this.xAddresses[this.index]);
             }
         }
     }
