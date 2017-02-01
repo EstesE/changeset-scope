@@ -9,7 +9,6 @@
                 <div class='row' style='border: 1px solid black;'>
                 {{my-address 
                     model=address
-                    index=index
                     removeAddress=(action 'removeAddress')
                     xAddresses=xAddresses
                     index=index
@@ -19,13 +18,12 @@
             </div>
         </div>
         {{else}}
-        <div class='block block-bordered-lg p-t-0'>
+        <div class='block block-bordered-lg'>
             <div class='container'>
                 <h3 class='block-title text-uppercase'>Previous Address <span class='ion-ios-trash-outline removeItem' {{action 'removeAddress' address index}}></span></h3>
                 <div class='row' style='border: 1px solid red;'>
                     {{my-address
                         model=address
-                        index=index
                         removeAddress=(action 'removeAddress')
                         xAddresses=xAddresses
                         index=index
@@ -37,24 +35,29 @@
         {{/if}}
     {{/each}}
 
-    <div class='block p-t-0'>
-        <div class='container'>
-            <div class="pull-left">
-                <button type="button" title="Add Address" class="btn btn-link p-l-0"  {{action 'addAddress'}}><i class="fa fa-plus"></i> Add Previous Address</button>
-            </div>
+    <div class='block' style='margin-top: 10px;'>
+        <div class="pull-left">
+            <button type="button" title="Add Address" class="btn btn-success"  {{action 'addAddress'}}><i class="fa fa-plus"></i> Add Previous Address</button>
         </div>
     </div>
 
-    <div class='block p-t-0'>
+    <div class='block'>
         <div class='container'>
             <div class="pull-right">
-                {{#if (eq this.allValid true)}}
-                <button type="button" class="btn btn-primary-outline" >{{backText}}</button>
-                <button type="submit" class="btn btn-primary-outline pull-right" style="margin-left: 20px;">{{saveText}}</button>
-                {{else}}
-                <button type="button" disabled class="btn btn-primary-outline" >{{backText}}</button>
-                <button type="submit" disabled class="btn btn-primary-outline pull-right" style="margin-left: 20px;">{{saveText}}</button>
-                {{/if}}
+                <fieldset class='customFieldset'>
+                    <legend class='customFieldset'>Addresses Context (I live outside of the individual <i><strong>address</strong></i>'s)</legend>
+                    {{#if (eq this.allValid true)}}
+                    <div class='col-xs-offset-8 col-xs-4'>
+                        <button type="button" class="btn btn-primary"><i class="fa fa-chevron-left"></i> {{backText}}</button>
+                        <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-chevron-right"></i> {{saveText}}</button>
+                    </div>
+                    {{else}}
+                    <div class='col-xs-offset-8 col-xs-4'>
+                        <button type="button" disabled class="btn btn-primary"><i class="fa fa-chevron-left"></i> {{backText}}</button>
+                        <button type="submit" disabled class="btn btn-primary pull-right"><i class="fa fa-chevron-right"></i> {{saveText}}</button>
+                    </div>
+                    {{/if}}
+                </fieldset>
             </div>
         </div>
     </div>

@@ -1,6 +1,7 @@
 
 @import "ember-bootstrap/bootstrap";
 @import "../../bower_components/Ionicons/less/ionicons";
+@import "../../bower_components/font-awesome/less/font-awesome";
 
 .removeItem {
     cursor: pointer;
@@ -9,4 +10,27 @@
 .removeItem:hover:before {
   font-family: "Ionicons";
   content: "\f4c5";
+}
+
+.radio-container {
+  input[type="radio"] {
+    height: 20px;
+    width: 20px;
+    position: relative;
+    top: 5px;
+  }
+}
+
+fieldset.customFieldset {
+    border: 1px groove #ddd !important;
+    padding: 0 1.4em 1.4em 1.4em !important;
+}
+
+legend.customFieldset {
+    text-align: left !important;
+
+}
+
+legend.customFieldset {
+    border-bottom:none;
 }

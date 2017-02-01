@@ -12,7 +12,7 @@ export default function validateConditional(options) {
 	for (let i = 0; i < max; i++) {
 		validators.push(makeValidator(options.if, thenValidators[i], elseValidators[i]));
 	}
-	console.log(validators);
+
 	return validators;
 }
 
