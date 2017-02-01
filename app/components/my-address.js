@@ -20,7 +20,7 @@ export default Ember.Component.extend({
         this.changeset.validate('zip');
         this.changeset.validate('moveInDate');
         this.changeset.validate('moveOutDate');
-        
+
         this.validateUp(this.changeset);
     },
 
@@ -38,7 +38,6 @@ export default Ember.Component.extend({
             return changeset.validate(property);
         },
         rentOrOwn: function (value) {
-            let component = this;
             let model = this.model;
             let changeset = this.changeset;
             if (value === true) {
