@@ -1,10 +1,3 @@
-// export default function validateAddress(/* options = {} */) {
-//   return (/* key, newValue, oldValue, changes, content */) => {
-//     return true;
-//   };
-// }
-
-
 import {
 	validatePresence,
 	validateLength,
@@ -12,6 +5,7 @@ import {
 	validateNumber,
 } from 'ember-changeset-validations/validators';
 import validateDate from './date';
+import validateConditional, { equal } from './conditional';
 
 export default {
 	street: [
@@ -35,18 +29,29 @@ export default {
 		validatePresence({ presence: true, message: 'Required' }),
 		validateDate({ message: '(Invalid date format)' })
 	],
-	'landlord.name': [
-		validatePresence({ presence: true, message: 'Required' })
-	],
-	'landlord.phone': [
-		validatePresence({ presence: true, message: 'Required' }),
-		validateFormat({ presence: true, type: 'phone', message: 'Check format' })
-	],
-	'landlord.rent': [
-		validatePresence({ presence: true, message: 'Required' }),
-		validateNumber({ allowBlank: false, message: 'Check format' }),
-		validateNumber({ integer: true }),
-		validateNumber({ positive: true, message: 'Positive numbers only' }),
-		validateNumber({ gte: 0 })
-	]
+
+	'landlord.name': validateConditional({
+		if: equal('rent', true),
+		then: validatePresence({ presence: true, message: 'Required' }),
+		else: validatePresence({ presence: false })
+	}),
+	'landlord.phone': validateConditional({
+		if: equal('rent', true),
+		then: [
+			validatePresence({ presence: true , message: 'Required' }),
+        	validateFormat({ presence: true, type: 'phone', message: 'Check format' })
+		],
+		else: validatePresence({ presence: false })
+	}),
+	'landlord.rent': validateConditional({
+		if: equal('rent', true),
+		then: [
+			validatePresence({ presence: true , message: 'Required' }),
+			validateNumber({ allowBlank: false, message: 'Numbers only (Example: 1150)' }),
+			validateNumber({ integer: true }),
+			validateNumber({ positive: true, message: 'Positive numbers only' }),
+			validateNumber({ gte: 0 })
+		],
+		else: validatePresence({ presence: false })
+	})
 };
