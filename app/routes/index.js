@@ -13,7 +13,7 @@ export default Ember.Route.extend({
                 "moveOutDate": "2016-04-20",
                 "rent": false
             }, {
-                "id": 3,
+                "id": 2,
                 "street": "3977 Arrowood Avenue",
                 "city": "Worcester",
                 "state": "MA",
@@ -26,15 +26,6 @@ export default Ember.Route.extend({
                     "phone": "5088675309",
                     "rent": "1200"
                 }
-            }, {
-                "id": 4,
-                "street": "10 Leroy Lane",
-                "city": "Orlando",
-                "state": "FL",
-                "zip": "38433",
-                "moveInDate": "2017-01-15",
-                "moveOutDate": "2016-05-02",
-                "rent": false
             }
         ];
     }

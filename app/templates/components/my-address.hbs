@@ -132,3 +132,9 @@
     }}
 </div>
 {{/if}}
+
+<p>isDirty: {{this.changeset.isDirty}}</p>
+<p>isValid: {{this.changeset.isValid}}</p>
+Errors: {{#each this.changeset.errors as |error index|}}
+    {{error}}
+{{/each}}
