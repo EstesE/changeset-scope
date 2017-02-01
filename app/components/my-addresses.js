@@ -1,21 +1,33 @@
 import Ember from 'ember';
 
-const { isPresent } = Ember;
+const { get, isPresent, set } = Ember;
 
 export default Ember.Component.extend({
+    numberOfAddresses: null,
+
+    init() {
+        let component = this;
+        component._super(...arguments);
+
+
+        set(component, 'numberOfAddresses', component.model.length);
+    },
 
     actions: {
 
         removeAddress:function(address) {
-            console.log('Remove Address');
+            let component = this;
+            let addressNum = get(component, 'numberOfAddresses');
             if (isPresent(address)) {
                 let addresses = this.get('model');
                 addresses.removeObject(address);
+                set(component, 'numberOfAddresses', addressNum - 1);
             }
         },
 
         addAddress: function() {
-            console.log('Add Address');
+            let component = this;
+            let addressNum = get(component, 'numberOfAddresses');
             let addresses = this.get('model');
             let address = Ember.Object.create({
                 street: '',
@@ -26,6 +38,7 @@ export default Ember.Component.extend({
                 rent: false
             });
             addresses.pushObject(address);
+            set(component, 'numberOfAddresses', addressNum + 1);
         }
     }
 });
