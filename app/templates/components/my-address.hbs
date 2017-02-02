@@ -58,6 +58,7 @@
     }}
 </div>
 
+{{#unless (eq index 0)}}
 <div class='col-md-4'>
     {{validated-field 
         type="date" 
@@ -69,8 +70,9 @@
         validateProperty=(action 'validateProperty' changeset "moveOutDate")
     }}
 </div>
+{{/unless}}
 
-<div class="col-md-4 radio-container" style="min-height: 83px;">
+<div class="{{unless (eq index 0) 'col-md-4' 'col-md-4 col-md-offset-4'}} radio-container" style="min-height: 83px;">
     <label>Do you currently Rent or Own
     <div>
         <label class='m-r'>

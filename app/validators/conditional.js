@@ -34,3 +34,11 @@ export function prop(name, callback) {
 export function equal(name, expected) {
 	return prop(name, value => value === expected);
 }
+
+export function notEqual(name, expected) {
+	return prop(name, value => value !== expected);
+}
+
+export function compare(name, expected) {
+	debugger;
+}

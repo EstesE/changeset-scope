@@ -13,6 +13,8 @@ export default Ember.Component.extend({
 
         this.changeset = new Changeset(this.model, lookupValidator(AddressValidations), AddressValidations);
 
+        set(component.model, 'index', component.index);
+
         this.changeset.validate();
         this.validateUp(this.changeset);
     },

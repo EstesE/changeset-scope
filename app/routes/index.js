@@ -10,7 +10,7 @@ export default Ember.Route.extend({
                 "state": "WA",
                 "zip": "49208",
                 "moveInDate": "2016-10-05",
-                "moveOutDate": "2016-04-20",
+                // "moveOutDate": "2016-04-20",
                 "rent": false
             }, {
                 "id": 2,

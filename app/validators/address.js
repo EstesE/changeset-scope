@@ -5,7 +5,7 @@ import {
 	validateNumber,
 } from 'ember-changeset-validations/validators';
 import validateDate from './date';
-import validateConditional, { equal } from './conditional';
+import validateConditional, { equal, notEqual } from './conditional';
 
 export default {
 	street: [
@@ -25,10 +25,17 @@ export default {
 		validatePresence({ presence: true, message: 'Required' }),
 		validateDate({ message: '(Invalid date format)' })
 	],
-	moveOutDate: [
-		validatePresence({ presence: true, message: 'Required' }),
-		validateDate({ message: '(Invalid date format)' })
-	],
+
+	moveOutDate: validateConditional({
+		if: notEqual('index', 0),
+		then: validatePresence({ presence: true, message: 'Required Date' }),
+		else: validatePresence({ presence: false })
+	}),
+
+	// moveOutDate: [
+	// 	validatePresence({ presence: true, message: 'Required' }),
+	// 	validateDate({ message: '(Invalid date format)' })
+	// ],
 
 	'landlord.name': validateConditional({
 		if: equal('rent', true),
