@@ -1,10 +1,3 @@
-// export default function validateDate(/* options = {} */) {
-//   return (/* key, newValue, oldValue, changes, content */) => {
-//     return true;
-//   };
-// }
-
-
 export default function validateDate() {
 	return (key, newValue, oldValue/*, changes, content*/) => {
 		if (newValue === oldValue) {
