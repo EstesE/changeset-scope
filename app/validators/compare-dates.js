@@ -4,6 +4,7 @@ const { isEmpty } = Ember;
 
 export default function validateDate() {
 	return (key, newValue, oldValue, changes, content) => {
+		// debugger;
 		if (isEmpty(content.moveOutDate)) {
 			return true;
 		} else {

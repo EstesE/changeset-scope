@@ -9,7 +9,7 @@ export default Ember.Route.extend({
                 "city": "Olympia",
                 "state": "WA",
                 "zip": "49208",
-                "moveInDate": "2016-10-05",
+                "moveInDate": "2017-02-01",
                 // "moveOutDate": "2016-04-20",
                 "rent": false
             }, {
@@ -18,8 +18,8 @@ export default Ember.Route.extend({
                 "city": "Worcester",
                 "state": "MA",
                 "zip": "99735",
-                "moveInDate": "2016-12-18",
-                "moveOutDate": "2016-11-23",
+                "moveInDate": "2016-01-18",
+                "moveOutDate": "2017-02-01",
                 "rent": true,
                 "landlord": {
                     "name": "Anthony Crawford",

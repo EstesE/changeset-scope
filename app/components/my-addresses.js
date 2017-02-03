@@ -8,7 +8,7 @@ export default Ember.Component.extend({
     xAddresses: [],
     allValid: false,
     addressIndex: null,
-
+    
     init() {
         let component = this;
         component._super(...arguments);
@@ -20,6 +20,7 @@ export default Ember.Component.extend({
             let add = {
                 name: name,
                 valid: false,
+                days: null,
                 changeset: {}
             };
             this.xAddresses.push(add);
