@@ -1,6 +1,10 @@
+import Ember from 'ember';
+
+const { isEmpty } = Ember;
+
 export default function validateDate() {
 	return (key, newValue, oldValue, changes, content) => {
-		if (Ember.isEmpty(content.moveOutDate)) {
+		if (isEmpty(content.moveOutDate)) {
 			return true;
 		} else {
 			let inDate = content.moveInDate;

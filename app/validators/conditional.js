@@ -1,5 +1,5 @@
 import Ember from 'ember';
-const { get, makeArray, isBlank } = Ember;
+const { get, makeArray } = Ember;
 
 export default function validateConditional(options) {
 	let thenValidators = makeArray(options.then);
@@ -31,37 +31,10 @@ export function prop(name, callback) {
 	};
 }
 
-export function compareProps(val1, val2, callback) {
-	return (key, newValue, oldValue, changes, content) => {
-		debugger;
-		// if (content.moveInDate > content.moveOutDate) {
-		// 	return true;
-		// }
-		if(isBlank(val2)) {
-			return true;
-		}
-		return(moment(content.moveOutDate).isAfter(moment(content.moveInDate)));
-		// return false;
-		// let value = changes.hasOwnProperty(name) ? changes[name] : get(content, name);
-		// return callback(value);
-	};
-}
-
 export function equal(name, expected) {
 	return prop(name, value => value === expected);
 }
 
 export function notEqual(name, expected) {
 	return prop(name, value => value !== expected);
-}
-
-export function lt(val1, val2) {
-	// if (val1 < val2) {
-	// 	return true;
-	// } else {
-	// 	return 'shit';
-	// }
-
-	// return prop(val1, value => value < val2);
-	return compareProps(val1, val2, value => value < val2);
 }

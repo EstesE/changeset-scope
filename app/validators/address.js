@@ -5,7 +5,7 @@ import {
 	validateNumber,
 } from 'ember-changeset-validations/validators';
 import validateDate from './date';
-import validateConditional, { equal, notEqual, lt } from './conditional';
+import validateConditional, { equal, notEqual } from './conditional';
 import validateCompareDates from './compare-dates';
 
 export default {
