@@ -8,7 +8,7 @@ export default function lessThanDate() {
         if (isPresent(newValue) && isPresent(content.moveOutDate)) {
             let moveInDate = newValue;
             let moveOutDate = content.moveOutDate;
-            // debugger;
+
             if (changes.moveOutDate) {
                 moveOutDate = changes.moveOutDate;
             }

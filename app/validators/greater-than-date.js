@@ -8,7 +8,7 @@ export default function greaterThanDate() {
         if (isPresent(newValue) && isPresent(content.moveOutDate)) {
             let moveOutDate = newValue;
             let moveInDate = content.moveInDate;
-            // debugger;
+
             if (changes.moveInDate) {
                 moveInDate = changes.moveInDate;
             }

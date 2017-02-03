@@ -4,9 +4,7 @@ import {
 	validateFormat,
 	validateNumber,
 } from 'ember-changeset-validations/validators';
-// import validateDate from './date';
 import validateConditional, { equal, notEqual } from './conditional';
-// import validateCompareDates from './compare-dates';
 import lessThanDate from './less-than-date';
 import greaterThanDate from './greater-than-date';
 
@@ -24,48 +22,22 @@ export default {
 		validatePresence({ presence: true, message: 'Required' }),
 		validateLength({ is: 5, allowBlank: false, message: 'Check Length' })
 	],
-	// moveInDate: [
-	// 	validatePresence({ presence: true, message: 'Required' }),
-	// 	validateDate({ message: '(Invalid date format)' })
-	// ],
-
 	moveInDate: validateConditional({
 		if: equal('index', 0),
 		then: validatePresence({ presence: true, message: 'Required' }),
 		else: [
 			validatePresence({ presence: true, message: 'Required' }),
-			// validateCompareDates({ message: 'Doh!' })
 			lessThanDate({ })
 		]
 	}),
 	moveOutDate: validateConditional({
 		if: notEqual('index', 0),
-		// then: validatePresence({ presence: true, message: 'Required Date' }),
 		then: [
 			validatePresence({ presence: true, message: 'Required' }),
 			greaterThanDate({ })
 		],
 		else: validatePresence({ presence: false, message: 'Required' })
 	}),
-
-	// moveOutDate: validateConditional({
-	// 	if: notEqual('moveInDate', 'moveOutDate'),
-	// 	// then: validatePresence({ presence: true, message: 'Required Date' }),
-	// 	then: validateCompareDates({ }),
-	// 	else: validatePresence({ presence: false })
-	// }),
-
-	// moveOutDate: validateConditional({
-	// 	if: notEqual('index', 0),
-	// 	then: validatePresence({ presence: true, message: 'Required Date' }),
-	// 	else: validatePresence({ presence: false })
-	// }),
-
-	// moveOutDate: [
-	// 	validatePresence({ presence: true, message: 'Required' }),
-	// 	validateDate({ message: '(Invalid date format)' })
-	// ],
-
 	'landlord.name': validateConditional({
 		if: equal('rent', true),
 		then: validatePresence({ presence: true, message: 'Required' }),
