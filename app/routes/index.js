@@ -18,7 +18,7 @@ export default Ember.Route.extend({
                 "city": "Worcester",
                 "state": "MA",
                 "zip": "99735",
-                "moveInDate": "2016-01-18",
+                "moveInDate": "2017-03-01",
                 "moveOutDate": "2017-02-01",
                 "rent": true,
                 "landlord": {

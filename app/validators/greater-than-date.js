@@ -14,7 +14,7 @@ export default function greaterThanDate() {
             }
             let answer = moment(moveOutDate).isAfter(moveInDate);
             if (answer === false) {
-                return 'Move out date should be after move in date';
+                return '\'To Date\' should be after \'From Date\'';
             }
             return true;
         }

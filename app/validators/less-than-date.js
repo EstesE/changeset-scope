@@ -14,7 +14,7 @@ export default function lessThanDate() {
             }
             let answer = moment(moveOutDate).isAfter(moveInDate);
             if (answer === false) {
-                return 'Move in date should be before move out date';
+                return '\'From Date\' should be before \'To Date\'';
             }
             return true;
         }
