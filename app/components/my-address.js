@@ -11,41 +11,42 @@ export default Ember.Component.extend({
 
         component._super(...arguments);
 
-        this.changeset = new Changeset(this.model, lookupValidator(AddressValidations), AddressValidations);
+        // this.changeset = new Changeset(this.model, lookupValidator(AddressValidations), AddressValidations);
 
-        set(component.model, 'index', component.index);
+        // set(component.model, 'index', component.index);
 
-        this.changeset.validate();
-        this.validateUp(this.changeset);
+        // this.changeset.validate();
+        // this.validateUp(this.changeset);
     },
 
-    keyUp: function() {
-        this.sendAction('validatedUp', this.changeset, this.xAddresses[this.index]);
-    },
+    // keyUp: function() {
+    //     this.sendAction('validatedUp', this.changeset, this.xAddresses[this.index]);
+    // },
 
-    validateUp(changeset) {
-        this.sendAction('validatedUp', changeset, this.xAddresses[this.index]);
-    },
+    // validateUp(changeset) {
+    //     this.sendAction('validatedUp', changeset, this.xAddresses[this.index]);
+    // },
 
     actions: {
         validateProperty(changeset, property) {
-            this.sendAction('validatedUp', this.changeset, this.xAddresses[this.index]);
+            // this.sendAction('validatedUp', this.changeset, this.xAddresses[this.index]);
             return changeset.validate(property);
         },
         rentOrOwn: function (value) {
-            let model = this.model;
+            debugger;
+            // let model = this.model;
             let changeset = this.changeset;
             if (value === true) {
-                set(model, 'landlord', { name: '', phoneNumber: '', monthlyRent: '' });
-                set(changeset, 'landlord.name', '');
-                set(changeset, 'landlord.phone', '');
-                set(changeset, 'landlord.rent', '');
-                this.sendAction('validatedUp', this.changeset, this.xAddresses[this.index]);
+                // set(model, 'landlord', { name: '', phoneNumber: '', monthlyRent: '' });
+                // set(changeset, 'landlord.name', '');
+                // set(changeset, 'landlord.phone', '');
+                // set(changeset, 'landlord.rent', '');
+                // // this.sendAction('validatedUp', this.changeset, this.xAddresses[this.index]);
             } else {
-                set(changeset, 'landlord.name', null);
-                set(changeset, 'landlord.phone', null);
-                set(changeset, 'landlord.rent', null);
-                this.sendAction('validatedUp', this.changeset, this.xAddresses[this.index]);
+                // set(changeset, 'landlord.name', null);
+                // set(changeset, 'landlord.phone', null);
+                // set(changeset, 'landlord.rent', null);
+                // // this.sendAction('validatedUp', this.changeset, this.xAddresses[this.index]);
             }
         }
     }

@@ -86,7 +86,7 @@
         <label class='m-r'>
             {{radio-button
                 value=true
-                groupValue=model.rent
+                groupValue=changeset.rent
                 changed="rentOrOwn"
             }}
             Rent
@@ -94,7 +94,7 @@
         <label>
             {{radio-button
                 value=false
-                groupValue=model.rent
+                groupValue=changeset.rent
                 changed="rentOrOwn"
             }}
             Own

@@ -1,6 +1,6 @@
 <div class='container'>
     <div class='col-xs-12 text-center'><h2>{{this.numberOfAddresses}} Addresses</h2></div>
-    {{#each model as |address index|}}
+    {{#each changesets as |changeset index|}}
         {{#if (eq index 0)}}
         <div class='block p-t-0'>
             <div class='container'>
@@ -8,11 +8,11 @@
                 <h4 class='block-title'>Please list all previous addresses you have lived at over the past 10 years. <small>(<span style='color: red;'>Current Address</span> does not require <span style='color: red;'>To Date</span>)</small></h4>
                 <div class='row' style='border: 1px solid black;'>
                 {{my-address 
-                    model=address
                     removeAddress=(action 'removeAddress')
                     xAddresses=xAddresses
                     index=index
                     validatedUp=(action 'validatedUp')
+                    changeset=changeset
                 }}
                 </div>
             </div>
@@ -23,11 +23,11 @@
                 <h3 class='block-title text-uppercase'>Previous Address <span class='ion-ios-trash-outline removeItem' {{action 'removeAddress' address index}}></span></h3>
                 <div class='row' style='border: 1px solid red;'>
                     {{my-address
-                        model=address
                         removeAddress=(action 'removeAddress')
                         xAddresses=xAddresses
                         index=index
                         validatedUp=(action 'validatedUp')
+                        changeset=changeset
                     }}
                 </div>
             </div>

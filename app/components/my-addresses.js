@@ -1,4 +1,7 @@
 import Ember from 'ember';
+import AddressValidations from 'changeset-scope/validators/address';
+import lookupValidator from 'ember-changeset-validations';
+import Changeset from 'ember-changeset';
 
 const { get, isPresent, set } = Ember;
 
@@ -13,19 +16,12 @@ export default Ember.Component.extend({
         let component = this;
         component._super(...arguments);
 
-        set(component, 'numberOfAddresses', component.model.length);
-
-        for (let i = 0; i < component.model.length; i++) {
-            let name = 'address' + i;
-            let add = {
-                name: name,
-                valid: false,
-                days: null,
-                changeset: {}
-            };
-            this.xAddresses.push(add);
-            set(this, 'addressIndex', i);
+        let changesets = []
+        for (let i = 0; i < this.model.length; i++) {
+            let changeset = new Changeset(this.model[i], lookupValidator(AddressValidations), AddressValidations);
+            changesets.push(changeset);
         }
+        set(component, 'changesets', changesets);
     },
 
     actions: {
