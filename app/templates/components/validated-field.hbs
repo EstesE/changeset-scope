@@ -59,7 +59,7 @@
 {{#if (eq type "date")}}
     <label for={{concat type "-" property}} class={{if required 'required' ''}} style="position: relative; margin-bottom: 20px; width: 100%;">
         {{label}}{{#if labelMessage}}<small class='text-muted'> {{labelMessage}}</small>{{/if}}
-        <input class="{{classes}} {{if (get changeset.error property) 'bg-danger' ''}}" placeholder="2001-10-31" type={{type}} id={{concat type "-" property}} value={{get changeset property}} oninput={{action (mut (get changeset property)) value="target.value"}} onblur={{action validateProperty}} onchange={{action validateProperty}} style="margin-top: 5px;">
+        <input class="{{classes}} {{if (get changeset.error property) 'bg-danger' ''}}" placeholder="2001-10-31" type={{type}} id={{concat type "-" property}} value={{get changeset property}} oninput={{action (mut (get changeset property)) value="target.value"}} onchange={{action validateProperty}} style="margin-top: 5px;">
         {{#if (get changeset.error property)}}
             <div style="position: absolute;">
             {{#each (get (get changeset.error property) "validation") as |message index|}}

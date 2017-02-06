@@ -7,6 +7,7 @@ import {
 import validateConditional, { equal, notEqual } from './conditional';
 import lessThanDate from './less-than-date';
 import greaterThanDate from './greater-than-date';
+import date from './date';
 
 export default {
 	street: [
@@ -23,7 +24,9 @@ export default {
 		validateLength({ is: 5, allowBlank: false, message: 'Check Length' })
 	],
 	moveInDate: [
-		validatePresence({ presence: true, message: 'Required' })
+		// validatePresence({ presence: true, message: 'Required' })
+		// greaterThanDate({})
+		date({})
 	],
 	moveOutDate: [
 		// validatePresence({ presence: true, message: 'Required' })

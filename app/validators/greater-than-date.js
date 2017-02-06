@@ -4,21 +4,24 @@ const { isPresent } = Ember;
 
 export default function greaterThanDate() {
 	return (key, newValue, oldValue, changes, content) => {
+// debugger;
+        // if (isPresent(newValue) && isPresent(content.moveOutDate)) {
+            if (content.index > 0) {
+                let moveInDate = newValue;
+                let moveOutDate = content.moveOutDate;
 
-        if (isPresent(newValue) && isPresent(content.moveOutDate)) {
-            let moveOutDate = newValue;
-            let moveInDate = content.moveInDate;
+                if (isPresent(changes.moveOutDate)) {
+                    moveOutDate = changes.moveOutDate;
+                }
 
-            if (changes.moveInDate) {
-                moveInDate = changes.moveInDate;
-            }
-            let answer = moment(moveOutDate).isAfter(moveInDate);
-            if (answer === false) {
-                return '\'To Date\' should be after \'From Date\'';
+                let answer = moment(moveOutDate).isAfter(moveInDate);
+                if (answer === false) {
+                    return '\'To Date\' should be after \'From Date\'';
+                }
             }
             return true;
-        }
+        // }
 
-		return false;
+		// return false;
 	};
 }
