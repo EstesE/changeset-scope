@@ -1,7 +1,7 @@
 import Ember from 'ember';
-import AddressValidations from 'changeset-scope/validators/address';
-import lookupValidator from 'ember-changeset-validations';
-import Changeset from 'ember-changeset';
+// import AddressValidations from 'changeset-scope/validators/address';
+// import lookupValidator from 'ember-changeset-validations';
+// import Changeset from 'ember-changeset';
 
 const { set } = Ember;
 
