@@ -39,10 +39,13 @@ export default function validateDate(/* options = {} */) {
 				console.log('something');
 			}
 		}
-		
-		if (isBlank(newValue)) {
-			return false;
+
+		if (key === 'moveInDate') {
+			if (isBlank(newValue)) {
+				return 'Required';
+			}
 		}
+
 		return true;
 	};
 }

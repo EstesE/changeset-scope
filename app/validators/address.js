@@ -30,7 +30,8 @@ export default {
 	],
 	moveOutDate: [
 		// validatePresence({ presence: true, message: 'Required' })
-		lessThanDate({})
+		// lessThanDate({})
+		date({})
 	],
 	// moveInDate: validateConditional({
 	// 	if: equal('index', 0),
