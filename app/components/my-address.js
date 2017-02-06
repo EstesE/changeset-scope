@@ -20,7 +20,8 @@ export default Ember.Component.extend({
     },
 
     // keyUp: function() {
-    //     this.sendAction('validatedUp', this.changeset, this.xAddresses[this.index]);
+    //     console.log('test1');
+    //     // this.sendAction('validatedUp', this.changeset, this.xAddresses[this.index]);
     // },
 
     // validateUp(changeset) {
@@ -29,25 +30,24 @@ export default Ember.Component.extend({
 
     actions: {
         validateProperty(changeset, property) {
+            console.log('validateProperty');
             // this.sendAction('validatedUp', this.changeset, this.xAddresses[this.index]);
+            this.sendAction('changed');
             return changeset.validate(property);
         },
         rentOrOwn: function (value) {
-            debugger;
-            // let model = this.model;
             let changeset = this.changeset;
             if (value === true) {
-                // set(model, 'landlord', { name: '', phoneNumber: '', monthlyRent: '' });
-                // set(changeset, 'landlord.name', '');
-                // set(changeset, 'landlord.phone', '');
-                // set(changeset, 'landlord.rent', '');
-                // // this.sendAction('validatedUp', this.changeset, this.xAddresses[this.index]);
+                set(changeset._content, 'landlord', {});
+                set(changeset, 'landlord.name', '');
+                set(changeset, 'landlord.phone', '');
+                set(changeset, 'landlord.rent', '');
             } else {
-                // set(changeset, 'landlord.name', null);
-                // set(changeset, 'landlord.phone', null);
-                // set(changeset, 'landlord.rent', null);
-                // // this.sendAction('validatedUp', this.changeset, this.xAddresses[this.index]);
+                set(changeset, 'landlord.name', null);
+                set(changeset, 'landlord.phone', null);
+                set(changeset, 'landlord.rent', null);
             }
+            this.sendAction('changed');
         }
     }
 });

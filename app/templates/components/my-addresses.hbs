@@ -9,10 +9,8 @@
                 <div class='row' style='border: 1px solid black;'>
                 {{my-address 
                     removeAddress=(action 'removeAddress')
-                    xAddresses=xAddresses
-                    index=index
-                    validatedUp=(action 'validatedUp')
                     changeset=changeset
+                    changed=(action 'changed')
                 }}
                 </div>
             </div>
@@ -24,10 +22,8 @@
                 <div class='row' style='border: 1px solid red;'>
                     {{my-address
                         removeAddress=(action 'removeAddress')
-                        xAddresses=xAddresses
-                        index=index
-                        validatedUp=(action 'validatedUp')
                         changeset=changeset
+                        changed=(action 'changed')
                     }}
                 </div>
             </div>
@@ -48,8 +44,8 @@
                     <legend class='customFieldset'>Addresses Context (I live outside of the individual <i><strong>address</strong></i>'s)</legend>
                     {{#if (eq this.allValid true)}}
                     <div class='col-xs-offset-8 col-xs-4'>
-                        <button type="button" class="btn btn-primary"><i class="fa fa-chevron-left"></i> {{backText}}</button>
-                        <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-chevron-right"></i> {{saveText}}</button>
+                        <button type="button" class="btn btn-primary"><i class="fa fa-chevron-left" {{action 'save' changeset}}></i> {{backText}}</button>
+                        <button type="submit" class="btn btn-primary pull-right" {{action 'save' this}}><i class="fa fa-chevron-right"></i> {{saveText}}</button>
                     </div>
                     {{else}}
                     <div class='col-xs-offset-8 col-xs-4'>

@@ -24,7 +24,7 @@ export default Ember.Route.extend({
                 "landlord": {
                     "name": "Anthony Crawford",
                     "phone": "5088675309",
-                    "rent": "1200"
+                    "rent": '1150'
                 }
             }
         ];

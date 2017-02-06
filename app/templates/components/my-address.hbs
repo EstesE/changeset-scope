@@ -7,6 +7,7 @@
         required=true 
         classes="form-control"
         validateProperty=(action 'validateProperty' changeset "street")
+        changed=(action changed)
     }}
 </div>
 
@@ -19,6 +20,7 @@
         required=true 
         classes="form-control"
         validateProperty=(action 'validateProperty' changeset "city")
+        changed=(action changed)
     }}
 </div>
 
@@ -31,6 +33,7 @@
         required=true 
         classes="form-control"
         validateProperty=(action 'validateProperty' changeset "state")
+        changed=(action changed)
     }}
 </div>
 
@@ -43,6 +46,7 @@
         required=true 
         classes="form-control"
         validateProperty=(action 'validateProperty' changeset "zip")
+        changed=(action changed)
     }}
 </div>
 
@@ -56,6 +60,7 @@
         classes="form-control"
         validateProperty=(action 'validateProperty' changeset "moveInDate")
         index=index
+        changed=(action changed)
     }}
 </div>
 
@@ -71,6 +76,7 @@
         classes="form-control"
         validateProperty=(action 'validateProperty' changeset "moveOutDate")
         index=index
+        changed=(action changed)
     }}
     {{else}}
         <label style="position: relative; margin-bottom: 20px; width: 100%;">
@@ -103,7 +109,7 @@
     </label>
 </div>
 
-{{#if model.rent}}
+{{#if changeset.rent}}
 <div class="col-md-4">
     {{validated-field 
         type="text" 
@@ -113,6 +119,7 @@
         required=true 
         classes="form-control"
         validateProperty=(action 'validateProperty' changeset "landlord.name")
+        changed=(action changed)
     }}
 </div>
 
@@ -125,6 +132,7 @@
         required=true 
         classes="form-control"
         validateProperty=(action 'validateProperty' changeset "landlord.phone")
+        changed=(action changed)
     }}
 </div>
 
@@ -137,6 +145,7 @@
         required=true 
         classes="form-control"
         validateProperty=(action 'validateProperty' changeset "landlord.rent")
+        changed=(action changed)
     }}
 </div>
 {{/if}}
