@@ -4,9 +4,7 @@ import {
 	validateFormat,
 	validateNumber,
 } from 'ember-changeset-validations/validators';
-import validateConditional, { equal, notEqual } from './conditional';
-import lessThanDate from './less-than-date';
-import greaterThanDate from './greater-than-date';
+import validateConditional, { equal } from './conditional';
 import date from './date';
 
 export default {
@@ -24,31 +22,11 @@ export default {
 		validateLength({ is: 5, allowBlank: false, message: 'Check Length' })
 	],
 	moveInDate: [
-		// validatePresence({ presence: true, message: 'Required' })
-		// greaterThanDate({})
 		date({})
 	],
 	moveOutDate: [
-		// validatePresence({ presence: true, message: 'Required' })
-		// lessThanDate({})
 		date({})
 	],
-	// moveInDate: validateConditional({
-	// 	if: equal('index', 0),
-	// 	then: validatePresence({ presence: true, message: 'Required' }),
-	// 	else: [
-	// 		validatePresence({ presence: true, message: 'Required' }),
-	// 		lessThanDate({ })
-	// 	]
-	// }),
-	// moveOutDate: validateConditional({
-	// 	if: notEqual('index', 0),
-	// 	then: [
-	// 		validatePresence({ presence: true, message: 'Required' }),
-	// 		greaterThanDate({ })
-	// 	],
-	// 	else: validatePresence({ presence: false, message: 'Required' })
-	// }),
 	'landlord.name': validateConditional({
 		if: equal('rent', true),
 		then: validatePresence({ presence: true, message: 'Required' }),
