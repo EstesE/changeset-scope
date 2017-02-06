@@ -18,7 +18,7 @@
         {{else}}
         <div class='block block-bordered-lg'>
             <div class='container'>
-                <h3 class='block-title text-uppercase'>Previous Address <span class='ion-ios-trash-outline removeItem' {{action 'removeAddress' address index}}></span></h3>
+                <h3 class='block-title text-uppercase'>Previous Address <span class='ion-ios-trash-outline removeItem' {{action 'removeAddress' changeset index}}></span></h3>
                 <div class='row' style='border: 1px solid red;'>
                     {{my-address
                         removeAddress=(action 'removeAddress')
