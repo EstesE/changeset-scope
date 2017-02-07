@@ -3,7 +3,7 @@
 Using ember-changeset & ember-changeset-validations - validate each individual address. The **Save** and **Back** buttons should only be enabled if all of the
 addresses are valid.
 
-The application should load in an **inValid** state because of the **From Date** & **To Date** so the **Back** & **Save** buttons should be disabled.
+The application should load in an **inValid** state because the **From Date** & **To Date** are in an invalid state... so the **Back** & **Save** buttons should be disabled.
 
 ## Prerequisites
 
