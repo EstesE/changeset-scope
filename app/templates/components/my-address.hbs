@@ -66,23 +66,30 @@
 
 
 <div class='col-md-4'>
-    {{#unless (eq index 0)}}
-    {{validated-field 
-        type="date" 
-        changeset=changeset
-        property="moveOutDate" 
-        label="To Date" 
-        required=true 
-        classes="form-control"
-        validateProperty=(action 'validateProperty' changeset "moveOutDate")
-        index=index
-        changed=(action changed)
-    }}
+    {{#unless (eq this.changeset._content.index 0)}}
+        {{validated-field 
+            type="date" 
+            changeset=changeset
+            property="moveOutDate" 
+            label="To Date" 
+            required=true 
+            classes="form-control"
+            validateProperty=(action 'validateProperty' changeset "moveOutDate")
+            index=index
+            changed=(action changed)
+        }}
     {{else}}
-        <label style="position: relative; margin-bottom: 20px; width: 100%;">
-            To Date
-            <input type="text" disabled class="form-control" style="margin-top: 5px;">
-        </label>
+        {{validated-field 
+            type="date" 
+            changeset=changeset
+            property="moveOutDate" 
+            label="To Date" 
+            required=false 
+            classes="form-control"
+            validateProperty=(action 'validateProperty' changeset "moveOutDate")
+            index=index
+            changed=(action changed)
+        }}
     {{/unless}}
 </div>
 
