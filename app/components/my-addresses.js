@@ -40,7 +40,7 @@ export default Ember.Component.extend({
             // debugger;
         },
 
-        removeAddress: function (changeset/*, index*/) {
+        removeAddress: function (changeset) {
             if (isPresent(changeset)) {
                 let changesets = this.get('changesets');
                 changesets.removeObject(changeset);
