@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { set } = Ember;
+const { isPresent, set } = Ember;
 
 export default Ember.Component.extend({
     init() {
@@ -11,22 +11,24 @@ export default Ember.Component.extend({
 
     actions: {
         validateProperty(changeset, property) {
-            this.sendAction('changed');
             return changeset.validate(property);
         },
         rentOrOwn: function (value) {
             let changeset = this.changeset;
-            if (value === true) {
-                set(changeset._content, 'landlord', {});
-                set(changeset, 'landlord.name', '');
-                set(changeset, 'landlord.phone', '');
-                set(changeset, 'landlord.rent', '');
-            } else {
-                set(changeset, 'landlord.name', null);
-                set(changeset, 'landlord.phone', null);
-                set(changeset, 'landlord.rent', null);
+            let address = this.address;
+            if (isPresent(address) && isPresent(changeset)) {
+                if (value === true) {
+                    set(address, 'landlord', {});
+                    changeset.set('landlord.name', '');
+                    changeset.set('landlord.phone', '');
+                    changeset.set('landlord.rent', '');
+                } else {
+                    changeset.set('landlord.name', null);
+                    changeset.set('landlord.phone', null);
+                    changeset.set('landlord.rent', null);
+                    set(address, 'landlord', null);
+                }
             }
-            this.sendAction('changed');
         }
     }
 });

@@ -11,50 +11,54 @@ export default Ember.Component.extend({
     init() {
         let component = this;
         component._super(...arguments);
-        let changesets = [];
-        for (let i = 0; i < this.model.length; i++) {
-            set(this.model[i], 'index', i);
-            let changeset = new Changeset(this.model[i], lookupValidator(AddressValidations), AddressValidations);
-            changesets.push(changeset);
-            changeset.validate();
+
+        let objs = [];
+        for (let i = 0; i < this.model.addresses.length; i++) {
+            let address = this.model.addresses[i];
+            let changeset = new Changeset(address, lookupValidator(AddressValidations), AddressValidations);
+
+            if (address.rent === false) {
+                changeset.set('rent', false);
+            }
+
+            let obj = {
+                changeset: changeset,
+                address: address
+            };
+
+            objs.pushObject(obj);
         }
-        set(component, 'changesets', changesets);
-        this.keyUp();
+        set(component, 'objs', objs);
     },
-    keyUp: function() {
-        for (var i = 0, len = this.changesets.length; i < len; i++) {
-            if (this.changesets[i].get('isValid') !== true) {
-                set(this, 'allValid', false);
-                break;
-            } 
-            set(this, 'allValid', true);
-        }
-    },
+
 
     actions: {
-        changed: function() {
-            this.keyUp();
-        },
 
-        save: function(/*changeset*/) {
-            // debugger;
-        },
-
-        removeAddress: function (changeset) {
-            if (isPresent(changeset)) {
-                let changesets = this.get('changesets');
-                changesets.removeObject(changeset);
-
-                for (var i = 0, len = changesets.length; i < len; i++) {
-                    changesets[i].set('index', i);
+        save: function() {
+            for (let i = 0, length = this.objs.length; i < length; i++ ){
+                if (isPresent(this.objs[i].changeset)) {
+                    this.objs[i].changeset.validate().then(() => {
+                        console.log('changeset-' + i);
+                        console.log('isValid: ', this.objs[i].changeset.get('isValid'));
+                        console.log('isDirty: ', this.objs[i].changeset.get('isDirty'));
+                        console.log('\n');
+                    });
                 }
-                this.keyUp();
+                
+            }
+        },
+
+        removeAddress: function (obj) {
+            if (isPresent(obj)) {
+                let objs = this.get('objs');
+                objs.removeObject(obj);
             }
         },
 
         addAddress: function () {
-            let changesets = this.get('changesets');
-            let model = Ember.Object.create({
+
+            let objs = this.get('objs');
+            let address = Ember.Object.create({
                 street: '',
                 city: '',
                 state: '',
@@ -64,16 +68,19 @@ export default Ember.Component.extend({
             });
 
             let mId = 0;
-            for (var i = 0, len = changesets.length; i < len; i++) {
+            for (var i = 0, len = objs.length; i < len; i++) {
                 mId = i;
             }
 
-            set(model, 'index', mId + 1);
-            let changeset = new Changeset(model, lookupValidator(AddressValidations), AddressValidations);
-            changesets.pushObject(changeset);
+            set(address, 'index', mId + 1);
+            let changeset = new Changeset(address, lookupValidator(AddressValidations), AddressValidations);
+            
+            let obj = {
+                changeset: changeset,
+                address: address
+            };
 
-            changeset.validate();
-            this.keyUp();
+            objs.pushObject(obj);
         }
     }
 });

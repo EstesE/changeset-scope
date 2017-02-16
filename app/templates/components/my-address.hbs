@@ -7,7 +7,6 @@
         required=true 
         classes="form-control"
         validateProperty=(action 'validateProperty' changeset "street")
-        changed=(action changed)
     }}
 </div>
 
@@ -20,7 +19,6 @@
         required=true 
         classes="form-control"
         validateProperty=(action 'validateProperty' changeset "city")
-        changed=(action changed)
     }}
 </div>
 
@@ -33,7 +31,6 @@
         required=true 
         classes="form-control"
         validateProperty=(action 'validateProperty' changeset "state")
-        changed=(action changed)
     }}
 </div>
 
@@ -46,7 +43,6 @@
         required=true 
         classes="form-control"
         validateProperty=(action 'validateProperty' changeset "zip")
-        changed=(action changed)
     }}
 </div>
 
@@ -60,13 +56,12 @@
         classes="form-control"
         validateProperty=(action 'validateProperty' changeset "moveInDate")
         index=index
-        changed=(action changed)
     }}
 </div>
 
 
 <div class='col-md-4'>
-    {{#unless (eq this.changeset._content.index 0)}}
+    {{#unless (eq this.changeset.index 0)}}
         {{validated-field 
             type="date" 
             changeset=changeset
@@ -76,7 +71,6 @@
             classes="form-control"
             validateProperty=(action 'validateProperty' changeset "moveOutDate")
             index=index
-            changed=(action changed)
         }}
     {{else}}
         {{validated-field 
@@ -88,7 +82,6 @@
             classes="form-control"
             validateProperty=(action 'validateProperty' changeset "moveOutDate")
             index=index
-            changed=(action changed)
         }}
     {{/unless}}
 </div>
@@ -126,7 +119,7 @@
         required=true 
         classes="form-control"
         validateProperty=(action 'validateProperty' changeset "landlord.name")
-        changed=(action changed)
+        
     }}
 </div>
 
@@ -139,7 +132,7 @@
         required=true 
         classes="form-control"
         validateProperty=(action 'validateProperty' changeset "landlord.phone")
-        changed=(action changed)
+        
     }}
 </div>
 
@@ -152,7 +145,7 @@
         required=true 
         classes="form-control"
         validateProperty=(action 'validateProperty' changeset "landlord.rent")
-        changed=(action changed)
+        
     }}
 </div>
 {{/if}}

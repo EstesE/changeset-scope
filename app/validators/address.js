@@ -6,6 +6,7 @@ import {
 } from 'ember-changeset-validations/validators';
 import validateConditional, { equal } from './conditional';
 import date from './date';
+import custom from './custom';
 
 export default {
 	street: [
@@ -27,11 +28,12 @@ export default {
 	moveOutDate: [
 		date({})
 	],
-	'landlord.name': validateConditional({
-		if: equal('rent', true),
-		then: validatePresence({ presence: true, message: 'Required' }),
-		else: validatePresence({ presence: false })
-	}),
+	'landlord.name': custom({}),
+	// 'landlord.name': validateConditional({
+	// 	if: equal('rent', true),
+	// 	then: validatePresence({ presence: true, message: 'Required' }),
+	// 	else: validatePresence({ presence: false })
+	// }),
 	'landlord.phone': validateConditional({
 		if: equal('rent', true),
 		then: [
@@ -40,15 +42,16 @@ export default {
 		],
 		else: validatePresence({ presence: false })
 	}),
-	'landlord.rent': validateConditional({
-		if: equal('rent', true),
-		then: [
-			validatePresence({ presence: true , message: 'Required' }),
-			validateNumber({ allowBlank: false, message: 'Numbers only (Example: 1150)' }),
-			validateNumber({ integer: true }),
-			validateNumber({ positive: true, message: 'Positive numbers only' }),
-			validateNumber({ gte: 0 })
-		],
-		else: validatePresence({ presence: false })
-	})
+	'landlord.rent': custom({})
+	// 'landlord.rent': validateConditional({
+	// 	if: equal('rent', true),
+	// 	then: [
+	// 		validatePresence({ presence: true , message: 'Required' }),
+	// 		validateNumber({ allowBlank: false, message: 'Numbers only (Example: 1150)' }),
+	// 		validateNumber({ integer: true }),
+	// 		validateNumber({ positive: true, message: 'Positive numbers only' }),
+	// 		validateNumber({ gte: 0 })
+	// 	],
+	// 	else: validatePresence({ presence: false })
+	// })
 };
