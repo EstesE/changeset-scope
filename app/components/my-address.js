@@ -7,6 +7,7 @@ export default Ember.Component.extend({
         let component = this;
 
         component._super(...arguments);
+        console.log(component.get('changeset'));
     },
 
     actions: {

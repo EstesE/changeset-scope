@@ -39,7 +39,13 @@ export default Ember.Route.extend({
                 id: 1,
                 street: '',
                 city: '',
-                state: '',
+                // state: '',
+                state: {
+                    abbreviation: ''
+                },
+                applicantPets: {
+                    number: 0
+                },
                 zip: '',
                 moveInDate: '',
                 moveOutDate: '',

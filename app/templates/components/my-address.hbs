@@ -23,15 +23,24 @@
 </div>
 
 <div class='col-md-2'>
-    {{validated-field 
+    {{!--{{validated-field 
         type="text" 
         changeset=changeset
-        property="state" 
+        property="state.abbreviation" 
         label="State" 
         required=true 
         classes="form-control"
-        validateProperty=(action 'validateProperty' changeset "state")
-    }}
+        validateProperty=(action 'validateProperty' changeset "state.abbreviation")
+    }}--}}
+    {{validated-field 
+	    type="number" 
+		changeset=changeset
+		property="applicantPets.number"
+		label="How many" 
+		required=true 
+		classes="form-control"
+		validateProperty=(action 'validateProperty' changeset "applicantPets.number")
+	}}
 </div>
 
 <div class='col-md-2'>

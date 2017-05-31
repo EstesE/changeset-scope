@@ -22,15 +22,15 @@
     <label for={{concat type "-" property}} class={{if required 'required' ''}} style="position: relative; margin-bottom: 20px; width: 100%;">
         {{label}}
         <input class="{{classes}} {{if (get changeset.error property) 'bg-danger' ''}}" type={{type}} id={{concat type "-" property}} value={{get changeset property}} oninput={{action (mut (get changeset property)) value="target.value"}} onblur={{action validateProperty}} style="margin-top: 5px;">
-        {{#if (get changeset.error property)}}
-            <div style="position: absolute;">
-            {{#each (get (get changeset.error property) "validation") as |message index|}}
-                {{#if (eq index 0)}}
-                <small><label class="control-label text-danger">{{message}}</label></small>
-                {{/if}}
-            {{/each}}
-            </div>
-        {{/if}}
+        {{#each-in (get changeset '_errors') as |error value|}}
+            {{#if (eq error property)}}
+                {{#each (get value 'validation') as |message index|}}
+                    {{#if (eq index 0)}}
+                        <small style="position: absolute;"><label class="control-label text-danger">{{message}}</label></small>
+                    {{/if}}
+                {{/each}}
+            {{/if}}
+        {{/each-in}}
     </label>
 {{/if}}
 

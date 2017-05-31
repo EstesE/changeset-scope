@@ -15,8 +15,13 @@ export default {
 	city: [
 		validatePresence({ presence: true, message: 'Required' })
 	],
-	state: [
+	'state.abbreviation': [
 		validatePresence({ presence: true, message: 'Required' })
+	],
+	'applicantPets.number': [
+		validatePresence({ presence: true, message: 'Required' }),
+		validateNumber({ gte: 0, message: 'Greater than or equal to 0' }),
+		validateNumber({ integer: true, message: 'Whole numbers only' })
 	],
 	zip: [
 		validatePresence({ presence: true, message: 'Required' }),
